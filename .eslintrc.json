@@ -11,6 +11,8 @@
 	},
 	"plugins": ["react"],
 	"rules": {
-		"no-use-before-define": 0
+		"no-use-before-define": 0,
+		"indent": [true, "tabs", 2],
+		"quotes": ["single", "double"]
 	}
 }

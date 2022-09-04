@@ -1,9 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 
+import Hallo from "./src/components/Hello";
+
 export default function App() {
 	return (
 		<View style={styles.container}>
+			<Hallo bang>World</Hallo>
+			<Hallo style={{ fontSize: 16 }}>small World</Hallo>
 			<Text>Open up App.js to start working on your app!</Text>
 			{/* eslint-disable-next-line */}
 			<StatusBar style="auto" />
