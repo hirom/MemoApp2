@@ -5,20 +5,27 @@ import {
 	StyleSheet,
 	TextInput,
 	KeyboardAvoidingView,
+	Keyboard,
 } from "react-native";
 
 import AppBar from "../components/AppBar";
 import CircleButton from "../components/CircleButton";
+import KeyboardSafeView from "../components/KeyboardSafeView";
 
 export default function MemoEditScreen() {
 	return (
-		<KeyboardAvoidingView style={styles.container} behavior="height">
+		<KeyboardSafeView style={styles.container} behavior="height">
 			<AppBar />
 			<View style={styles.inputContainer}>
-				<TextInput value="買い物リスト" multiline style={styles.input} />
+				<TextInput
+					value="買い物リスト"
+					multiline
+					style={styles.input}
+					onSubmitEditing={Keyboard.dismiss}
+				/>
 			</View>
 			<CircleButton name="check" />
-		</KeyboardAvoidingView>
+		</KeyboardSafeView>
 	);
 }
 

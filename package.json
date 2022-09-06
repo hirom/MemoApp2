@@ -11,6 +11,7 @@
   "dependencies": {
     "@expo/vector-icons": "^10.2.1",
     "@use-expo/font": "^2.0.0",
+    "deprecated-react-native-prop-types": "^2.3.0",
     "expo": "~46.0.9",
     "expo-status-bar": "~1.4.0",
     "expo-updates": "~0.14.5",

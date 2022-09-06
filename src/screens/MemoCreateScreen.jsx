@@ -5,20 +5,29 @@ import {
 	StyleSheet,
 	TextInput,
 	KeyboardAvoidingView,
+	Keyboard,
 } from "react-native";
 
 import AppBar from "../components/AppBar";
 import CircleButton from "../components/CircleButton";
+import KeyboardSafeView from "../components/KeyboardSafeView";
+
+//追加対応！（Web版だとKeyboardSafeViewがうまく動かないため分岐を追加）
+import { Platform } from "react-native";
 
 export default function MemoCreateScreen() {
 	return (
-		<KeyboardAvoidingView style={styles.container} behavior="height">
+		<KeyboardSafeView style={styles.container} behavior="height">
 			<AppBar />
 			<View style={styles.inputContainer}>
-				<TextInput multiline style={styles.input} />
+				<TextInput
+					multiline
+					style={styles.input}
+					onSubmitEditing={Keyboard.dismiss}
+				/>
 			</View>
 			<CircleButton name="check" />
-		</KeyboardAvoidingView>
+		</KeyboardSafeView>
 	);
 }
 
