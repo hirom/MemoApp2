@@ -24,7 +24,7 @@ export default function MemoEditScreen() {
 					onSubmitEditing={Keyboard.dismiss}
 				/>
 			</View>
-			<CircleButton name="check" />
+			<CircleButton name="check" onPress={() => {}} />
 		</KeyboardSafeView>
 	);
 }
