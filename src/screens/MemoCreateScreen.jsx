@@ -8,17 +8,16 @@ import {
 	Keyboard,
 } from "react-native";
 
-import AppBar from "../components/AppBar";
 import CircleButton from "../components/CircleButton";
 import KeyboardSafeView from "../components/KeyboardSafeView";
 
 //追加対応！（Web版だとKeyboardSafeViewがうまく動かないため分岐を追加）
 import { Platform } from "react-native";
 
-export default function MemoCreateScreen() {
+export default function MemoCreateScreen(props) {
+	const { navigation } = props;
 	return (
 		<KeyboardSafeView style={styles.container} behavior="height">
-			<AppBar />
 			<View style={styles.inputContainer}>
 				<TextInput
 					multiline
@@ -26,7 +25,12 @@ export default function MemoCreateScreen() {
 					onSubmitEditing={Keyboard.dismiss}
 				/>
 			</View>
-			<CircleButton name="check" />
+			<CircleButton
+				name="check"
+				onPress={() => {
+					navigation.goBack();
+				}}
+			/>
 		</KeyboardSafeView>
 	);
 }
