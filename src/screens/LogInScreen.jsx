@@ -5,7 +5,10 @@ import {
 	StyleSheet,
 	TextInput,
 	TouchableOpacity,
+	Alert,
 } from "react-native";
+
+import firebase from "firebase";
 
 import Button from "../components/Button";
 
@@ -14,10 +17,24 @@ export default function LogInScreen(props) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	function handlePress() {
+		firebase
+			.auth()
+			.signInWithEmailAndPassword(email, password)
+			.then((userCredential) => {
+				const { user } = userCredential;
+				console.log(user.uid);
+				navigation.reset({ index: 0, routes: [{ name: "MemoList" }] });
+			})
+			.catch((error) => {
+				Alert.alert(error.code);
+			});
+	}
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.inner}>
-				<Text style={styles.title}>Sign Up</Text>
+				<Text style={styles.title}>Log In</Text>
 				<TextInput
 					style={styles.input}
 					value={email}
@@ -39,20 +56,15 @@ export default function LogInScreen(props) {
 					secureTextEntry
 					textContentType="password"
 				/>
-				<Button
-					label="Submit"
-					onPress={() => {
-						navigation.reset({ index: 0, routes: [{ name: "MemoList" }] });
-					}}
-				/>
+				<Button label="Submit" onPress={handlePress} />
 				<View style={styles.footer}>
-					<Text style={styles.footerText}>Already registered?</Text>
+					<Text style={styles.footerText}>Not registered?</Text>
 					<TouchableOpacity
 						onPress={() => {
-							navigation.reset({ index: 0, routes: [{ name: "LogIn" }] });
+							navigation.reset({ index: 0, routes: [{ name: "SignUp" }] });
 						}}
 					>
-						<Text style={styles.footerLink}>Log in.</Text>
+						<Text style={styles.footerLink}>Sign up here!</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
