@@ -13,22 +13,16 @@ import firebase from "firebase";
 import Button from "../components/Button";
 import Loading from "../components/Loading";
 import { translateErrors } from "../utils";
+import CancelLogin from "../components/CancelLogin";
 
 export default function LogInScreen(props) {
 	const { navigation } = props;
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
-		const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-			if (user) {
-				navigation.reset({ index: 0, routes: [{ name: "MemoList" }] });
-			} else {
-				setIsLoading(false);
-			}
-		});
-		return unsubscribe;
+		navigation.setOptions({ headerRight: () => <CancelLogin /> });
 	}, []);
 
 	function handlePress() {
